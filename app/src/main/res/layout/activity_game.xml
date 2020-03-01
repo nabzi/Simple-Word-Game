@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable name="viewModel" type="com.example.simple1.presentation.GameViewModel"/>
+    </data>
+<androidx.constraintlayout.widget.ConstraintLayout
+
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".presentation.EnterActivity">
+
+    <TextView
+        android:id="@+id/tvQusetion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:minHeight="50dp"
+        android:minWidth="50dp"
+        android:textAlignment="center"
+        android:gravity="center_horizontal"
+        android:layout_marginStart="32dp"
+        android:textColor="@color/red"
+        android:layout_marginLeft="32dp"
+        android:background="@android:color/holo_green_light"
+        android:padding="10dp"
+        android:text="@{viewModel.questionCharacters}"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/tvTimer"
+        app:layout_constraintTop_toTopOf="@+id/tvTimer"
+        tools:text="question" />
+
+    <EditText
+        android:id="@+id/etWord"
+        android:layout_width="wrap_content"
+        android:minWidth="100sp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:padding="20dp"
+        android:background="@{viewModel.canWriteResponse ? @color/yellow : @color/gray }"
+        android:enabled="@{viewModel.canWriteResponse}"
+        android:text="@{viewModel.player.lastWord}"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvQusetion"
+        tools:text="" />
+
+
+    <TextView
+        android:id="@+id/tvTimer"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="56dp"
+        android:background="@color/colorPrimary"
+        android:padding="10dp"
+        android:textAlignment="center"
+        android:gravity="center_horizontal"
+        android:text="@{viewModel.answerTime.toString()}"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textColor="@color/colorAccent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.288"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvOtherPlayerName" />
+
+    <Button
+        android:id="@+id/btnGo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="next"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etWord" />
+
+    <TextView
+        android:id="@+id/tvPlayerName"
+        android:minWidth="50dp"
+        android:padding="5dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="32dp"
+        android:background="@android:color/holo_blue_bright"
+        android:text="@{viewModel.player.name}"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="playerName" />
+
+    <TextView
+        android:id="@+id/tvScore"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:background="@android:color/holo_blue_bright"
+        android:gravity="center_horizontal"
+        android:minWidth="20dp"
+        android:padding="5dp"
+        android:text="@{String.valueOf(viewModel.player.score)}"
+        android:textAlignment="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        app:layout_constraintBottom_toBottomOf="@+id/tvPlayerName"
+        app:layout_constraintStart_toEndOf="@+id/tvPlayerName"
+        app:layout_constraintTop_toTopOf="@+id/tvPlayerName"
+        tools:text="1" />
+
+    <TextView
+        android:id="@+id/tvOtherPlayerName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:padding="5dp"
+        android:minWidth="50dp"
+        android:background="@color/gray"
+        android:layout_marginLeft="32dp"
+        android:text="@{viewModel.otherPlayer.name}"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        app:layout_constraintStart_toEndOf="@+id/tvScore"
+        app:layout_constraintTop_toTopOf="@+id/tvPlayerName"
+        tools:text="otherPlayerNAme" />
+
+    <TextView
+        android:id="@+id/tvOtherPlayerScore"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:background="@color/gray"
+        android:gravity="center_horizontal"
+        android:minWidth="20dp"
+        android:padding="5dp"
+        android:text="@{String.valueOf(viewModel.otherPlayer.score)}"
+        android:textAlignment="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        app:layout_constraintBottom_toBottomOf="@+id/tvOtherPlayerName"
+        app:layout_constraintStart_toEndOf="@+id/tvOtherPlayerName"
+        app:layout_constraintTop_toTopOf="@+id/tvOtherPlayerName"
+        tools:text="2" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

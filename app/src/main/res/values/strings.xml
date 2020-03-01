@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Simple Word Game</string>
+    <string name="name">name</string>
+    <string name="go">GO!</string>
+    <string name="enter_name">Welcome to Simple Word Game \n\n You should enter meaning-full words which start with the last letter of the other player\'s word\n\n Please enter your names : </string>
+    <string name="enter_a_word">please enter a word</string>
+</resources>
