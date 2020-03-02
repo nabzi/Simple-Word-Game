@@ -2,7 +2,6 @@ package com.example.simple1.framework
 
 import com.example.core.data.GameDataSource
 import com.example.core.domain.Player
-import com.example.core.domain.PlayerState
 import com.example.core.domain.WordGame
 
 class InMemoryGameDataSource : GameDataSource {
@@ -14,21 +13,11 @@ class InMemoryGameDataSource : GameDataSource {
     }
 
     override suspend fun getNextPlayer(): Player? {
-        game.players.iterator().forEach {
-            if(it.state.equals(PlayerState.PLAYING))
-                return it
-        }
-        return null
+        return game.getNextPlayer()
     }
 
     override suspend fun setNewResult(id: Int, lastWord: String) {
-        game.players.iterator().forEach {
-            if(it.id == id)
-            {
-                it.lastWord = lastWord
-            }
-        }
-        game.checkResultAndSetScore(id, lastWord)
+        game.setNewResult(id,lastWord)
     }
 
     override suspend fun getQUestion(): String {
