@@ -42,13 +42,11 @@ data class WordGame (var players: ArrayList<Player>,
     }
 
     fun getWinner(): Player? {
-        var loser: Player
         players.iterator().forEach {
             if (it.score > WIN_SCORE) {
                 return it
             }
             if (it.score < 0) {
-                loser = it
                 return getOtherPlayer(it.id)
             }
         }
@@ -72,5 +70,24 @@ data class WordGame (var players: ArrayList<Player>,
             .also {
                 players.add(it)
             }
+    }
+
+    fun getNextPlayer(): Player? {
+        players.iterator().forEach {
+            if(it.state.equals(PlayerState.PLAYING))
+                return it
+        }
+        return null
+
+    }
+
+    fun setNewResult(id: Int, lastWord: String) {
+        players.iterator().forEach {
+            if(it.id == id)
+            {
+                it.lastWord = lastWord
+            }
+        }
+        checkResultAndSetScore(id, lastWord)
     }
 }
