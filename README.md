@@ -11,4 +11,5 @@ LiveData is used to update binded view directly from GameViewModel, and kotlin c
 As recommended by clean-architecture pattern, bussiness logic is seprated completely from framework tools in core module.
 App module contains presentation package including views and viewModels , and framework package which includes framework-dependant data-source implementations and use-cases(interactors)
 
-Dependency injection is omitted for simplicity.
+Kotlin Koin is used  for dependency injection
+
